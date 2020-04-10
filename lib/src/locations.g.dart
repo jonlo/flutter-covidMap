@@ -22,8 +22,8 @@ Map<String, dynamic> _$GeometryToJson(Geometry instance) => <String, dynamic>{
 Property _$PropertyFromJson(Map<String, dynamic> json) {
   return Property(
       name: json['name'] as String,
-      pop_est: json['pop_est'] as int,
-      gdp_md_est: json['gdp_md_est'] as int,
+      pop_est: (json['pop_est'] as num)?.toDouble(),
+      gdp_md_est: (json['gdp_md_est'] as num)?.toDouble(),
       economy: json['economy'] as String,
       income_grp: json['income_grp'] as String,
       iso_a2: json['iso_a2'] as String,

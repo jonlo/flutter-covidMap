@@ -5,11 +5,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'locations.g.dart';
 
-
 @JsonSerializable()
 class Geometry {
-  Geometry({this.type,
-   this.coordinates});
+  Geometry({this.type, this.coordinates});
 
   factory Geometry.fromJson(Map<String, dynamic> json) =>
       _$GeometryFromJson(json);
@@ -41,8 +39,8 @@ class Property {
       _$PropertyFromJson(json);
   Map<String, dynamic> toJson() => _$PropertyToJson(this);
   final String name;
-  final int pop_est;
-  final int gdp_md_est;
+  final double pop_est;
+  final double gdp_md_est;
   final String economy;
   final String income_grp;
   final String iso_a2;
@@ -70,7 +68,6 @@ class Feature {
   final Property properties;
 }
 
-
 @JsonSerializable()
 class Locations {
   Locations({
@@ -85,10 +82,8 @@ class Locations {
   final List<Feature> features;
 }
 
-
-
-Future<Locations> getCovidDataEu() async {
-  const covidDataEu = 'https://covid19-data.p.rapidapi.com/geojson-eu';
+Future<Locations> getCovidData(String continentKey) async {
+  String covidDataEu = "https://covid19-data.p.rapidapi.com/geojson-$continentKey";
 
   // Retrieve the locations of Google offices
   final response = await http.get(
@@ -106,4 +101,3 @@ Future<Locations> getCovidDataEu() async {
         uri: Uri.parse(covidDataEu));
   }
 }
-
